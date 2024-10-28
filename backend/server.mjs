@@ -83,10 +83,59 @@ app.post('/contatos', (req, res) => {
 })
 
 //Editar um contato
+app.put('/contatos/:id', (req, res) => {
+    
+    const id = req.params.id;
+    const contato = contatos.find((contato) => contato.id == id);
+    
+    if(!contato) 
+        return res.status(404).json({
+        error: true,
+        message: "Contato não encontrado!"
+    });
+    
+    // const contato = req.body;
+    const { nome, genero, telefone, email } = req.body;
 
+    // Exceções primeiro:
+    if(email) {
+        if(contatos.find((contato) => contato.email === email))
+            return res.status(400).json({
+                error: true,
+                message: "Email já cadastrado!"
+            })
+        contato.email = email;
+    }
+    if(nome) contato.nome = nome;
+    if(genero) contato.genero = genero;
+    if(telefone) contato.telefone = telefone;
 
+    return res.status(200).json({
+        error: false,
+        message: "Contato atualizado com sucesso!"
+    });
+    
+});
 
-
+//Deletando um contato
+app.delete('/contatos/:id', (req, res) => {
+    
+    const id = req.params.id;
+    const index = contatos.findIndex((contato) => contato.id == id);
+    
+    if(index == -1) 
+        return res.status(404).json({
+            error: true,
+            message: "Contato não encontrado!"
+        });
+    
+    contatos.splice(index, 1); // remove o contato encontrado
+    return res.status(200).json({
+        error: false,
+        message: "Contato deletado com sucesso!"
+    });
+    
+});
 
 
 
