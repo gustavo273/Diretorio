@@ -10,6 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "uuid": "^11.0.2",
+    "uuidv4": "^6.2.13",
+    "v4": "^0.0.1"
   }
 }
