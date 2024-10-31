@@ -4,7 +4,8 @@ const  contatos = [
         nome: "gustavo",
         genero: "M",
         telefone: "6199999999"
-}
+},
+
 ]
 
 export default contatos;

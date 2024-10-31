@@ -8,10 +8,6 @@ const app = express();
 //middlewares
 app.use(express.json());
 
-//GET: /
-app.get("/", (req, res) => {
-    res.send("Olá mundo!");
-});
 
 
 /**
@@ -51,7 +47,7 @@ app.get('/contatos/:id', (req, res) => {
 
 });
 
-
+//Criar um novo contato
 app.post('/contatos', (req, res) => {
     const { nome, genero, telefone, email } = req.body;
 
